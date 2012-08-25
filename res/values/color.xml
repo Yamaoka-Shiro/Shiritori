@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="guidance">#B0C4DE</color>
+    <color name="pink">#FFC0CB</color>
+    <color name="deepskyblue">#00BFFF</color>
+    <color name="silver">#C0C0C0</color>
+    <color name="yellow">#FFFF00</color>
+    <color name="lightyellow">#FFFFE0</color>
+    <color name="lightsteelblue">#B0C4DE</color>
+    <color name="black">#000000</color>
+    <color name="red">#FF0000</color>
+</resources>
