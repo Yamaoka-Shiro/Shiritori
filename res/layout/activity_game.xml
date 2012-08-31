@@ -6,7 +6,7 @@
     android:layout_gravity="fill_vertical"
     android:orientation="vertical" >
 
-    <ImageView
+    <jp.co.est_inc.android.shiritori.MainImageView
         android:id="@+id/imageView1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

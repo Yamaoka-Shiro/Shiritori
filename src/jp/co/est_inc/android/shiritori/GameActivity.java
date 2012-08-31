@@ -24,7 +24,7 @@ import android.support.v4.app.NavUtils;
 public class GameActivity extends Activity implements OnClickListener {
 
 	private MainView mainView;
-	private ImageView imageView;
+	private MainImageView imageView;
 	private ImageButton imageButton1;
 	private ImageButton imageButton2;
 	private ImageButton imageButton3;
@@ -44,8 +44,7 @@ public class GameActivity extends Activity implements OnClickListener {
         Display display = wm.getDefaultDisplay();
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(display.getWidth() / 3, display.getWidth() / 3);
         
-        imageView = (ImageView)findViewById(R.id.imageView1);
-        //imageView = (ImageView)findViewById(R.id.mainView1);
+        imageView = (MainImageView)findViewById(R.id.imageView1);
         imageView.setImageResource(imageData.GetMainImageResId());
         
         imageButton1 = (ImageButton)findViewById(R.id.imageButton1);
@@ -77,6 +76,8 @@ public class GameActivity extends Activity implements OnClickListener {
         }
         
         if (imageData.GetNumCorrectButton() == numButton) {
+        	imageView.drawCircle();
+        	imageView.invalidate();
         	
         	imageData.SetMainImageByButton(numButton);
         	imageView.setImageResource(imageData.GetMainImageResId());
@@ -85,6 +86,38 @@ public class GameActivity extends Activity implements OnClickListener {
         	MediaPlayer se = MediaPlayer.create(this, R.raw.se_true);
         	se.start();
         	
+            // この時点で，別スレッドに処理をゆだねる
+            final Activity activity = this;
+            new Thread(new Runnable(){
+
+                @Override
+                public void run() {
+                    // これは別スレッド上での処理
+
+
+                    // ２秒待って，タイムラグを生む
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException ignore) {
+                    }
+
+
+                    // UIスレッド上で，
+                    // ２つ目の画像を表示する（フロッピーの保存アイコン）
+                    activity.runOnUiThread(new Runnable(){
+                        @Override
+                        public void run() {
+                        	imageView.clearChart();
+                            imageView.invalidate(); // ビューを再描画し，UI上で画像変更を反映
+                        }
+                    });
+                }
+
+            }).start();
+        	
+        	
+        	
+        	
         	// 回答ボタンを変更
         	imageData.SetSelectImages();
             imageButton1.setImageResource(imageData.GetAnswerButtonResId(0));
@@ -92,6 +125,46 @@ public class GameActivity extends Activity implements OnClickListener {
             imageButton3.setImageResource(imageData.GetAnswerButtonResId(2));
 
         } else {
+        	// メインの画像を一時的に不正解の画像に変更する
+			final int currentImageId = imageData.GetMainImageResId();
+        	imageView.setImageResource(imageData.GetAnswerButtonResId(numButton));
+        	
+        	// ✕表示
+        	imageView.drawCross();
+        	imageView.invalidate();
+        	
+            // この時点で，別スレッドに処理をゆだねる
+            final Activity activity = this;
+            new Thread(new Runnable(){
+
+                @Override
+                public void run() {
+                    // これは別スレッド上での処理
+
+
+                    // ２秒待って，タイムラグを生む
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException ignore) {
+                    }
+
+
+                    // UIスレッド上で，
+                    // ２つ目の画像を表示する（フロッピーの保存アイコン）
+                    activity.runOnUiThread(new Runnable(){
+                        @Override
+                        public void run() {
+                        	imageView.clearChart();
+                        	// メインの画像を元に戻す
+                        	imageView.setImageResource(currentImageId);
+                            imageView.invalidate(); // ビューを再描画し，UI上で画像変更を反映
+                        }
+                    });
+                }
+
+            }).start();
+        	
+        	
         	// 不正解の音を鳴らす
         	MediaPlayer seFalse = MediaPlayer.create(this, R.raw.se_false);
         	seFalse.start();
