@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.View.OnClickListener;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -132,6 +133,11 @@ public class GameActivity extends Activity implements OnClickListener {
         	// ✕表示
         	imageView.drawCross();
         	imageView.invalidate();
+
+        	// 不正解の音を鳴らす
+        	MediaPlayer seFalse = MediaPlayer.create(this, R.raw.se_false);
+        	seFalse.start();
+
         	
             // この時点で，別スレッドに処理をゆだねる
             final Activity activity = this;
@@ -141,6 +147,9 @@ public class GameActivity extends Activity implements OnClickListener {
                 public void run() {
                     // これは別スレッド上での処理
 
+                	imageButton1.setClickable(false);
+                	imageButton2.setClickable(false);
+                	imageButton3.setClickable(false);
 
                     // ２秒待って，タイムラグを生む
                     try {
@@ -160,14 +169,16 @@ public class GameActivity extends Activity implements OnClickListener {
                             imageView.invalidate(); // ビューを再描画し，UI上で画像変更を反映
                         }
                     });
+
+                	imageButton1.setClickable(true);
+                	imageButton2.setClickable(true);
+                	imageButton3.setClickable(true);
+ 
                 }
 
             }).start();
         	
         	
-        	// 不正解の音を鳴らす
-        	MediaPlayer seFalse = MediaPlayer.create(this, R.raw.se_false);
-        	seFalse.start();
         }
         
     }
