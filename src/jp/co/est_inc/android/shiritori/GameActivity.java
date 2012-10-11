@@ -128,7 +128,7 @@ public class GameActivity extends Activity implements OnClickListener {
         } else {
         	// メインの画像を一時的に不正解の画像に変更する
 			final int currentImageId = imageData.GetMainImageResId();
-        	imageView.setImageResource(imageData.GetAnswerButtonResId(numButton));
+        	imageView.setImageResource(imageData.GetAnswerButtonResPhotoId(numButton));
         	
         	// ✕表示
         	imageView.drawCross();
