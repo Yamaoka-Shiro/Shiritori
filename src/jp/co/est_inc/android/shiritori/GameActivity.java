@@ -17,6 +17,7 @@ import android.view.Window;
 import android.view.View.OnClickListener;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -29,6 +30,9 @@ public class GameActivity extends Activity implements OnClickListener {
 	private ImageButton imageButton1;
 	private ImageButton imageButton2;
 	private ImageButton imageButton3;
+	private EditText editText1;
+	private EditText editText2;
+	private EditText editText3;
 	
 	private ImageData imageData;
 	
@@ -62,6 +66,15 @@ public class GameActivity extends Activity implements OnClickListener {
         imageButton3.setImageResource(imageData.GetAnswerButtonResId(2));
         imageButton3.setOnClickListener(this);
         imageButton3.setLayoutParams(params);
+        
+        editText1 = (EditText)findViewById(R.id.editText1);
+        editText1.setText(imageData.GetAnswerButtonKana(0));
+        
+        editText2 = (EditText)findViewById(R.id.editText2);
+        editText2.setText(imageData.GetAnswerButtonKana(1));
+        
+        editText3 = (EditText)findViewById(R.id.editText3);
+        editText3.setText(imageData.GetAnswerButtonKana(2));
 
     }
 
@@ -124,6 +137,11 @@ public class GameActivity extends Activity implements OnClickListener {
             imageButton1.setImageResource(imageData.GetAnswerButtonResId(0));
             imageButton2.setImageResource(imageData.GetAnswerButtonResId(1));
             imageButton3.setImageResource(imageData.GetAnswerButtonResId(2));
+            
+            // 回答ぼたんのかなを変更
+            editText1.setText(imageData.GetAnswerButtonKana(0));
+            editText2.setText(imageData.GetAnswerButtonKana(1));
+            editText3.setText(imageData.GetAnswerButtonKana(2));
 
         } else {
         	// メインの画像を一時的に不正解の画像に変更する

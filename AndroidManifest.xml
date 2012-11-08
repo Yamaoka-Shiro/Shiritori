@@ -13,7 +13,7 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name=".TitleActivity"
-            android:label="@string/title_activity_title" >
+            android:label="@string/title_activity_title" android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -22,7 +22,7 @@
         </activity>
         <activity
             android:name=".GameActivity"
-            android:label="@string/title_activity_game" >
+            android:label="@string/title_activity_game" android:screenOrientation="portrait">
         </activity>
     </application>
 

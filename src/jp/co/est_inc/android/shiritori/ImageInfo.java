@@ -23,6 +23,11 @@ public class ImageInfo {
 		return finalLetter;
 	}
 	
+	private String kana;
+	public String GetKana() {
+		return kana;
+	}
+	
 	// コンストラクタ
 	public ImageInfo(int _resId, String _initLetter, String _finalLetter) {
 		resId = _resId;
@@ -37,4 +42,21 @@ public class ImageInfo {
 		initLetter = _initLetter;
 		finalLetter = _finalLetter;
 	}
+
+	public ImageInfo(int _resId, String _initLetter, String _finalLetter, String _kana) {
+		resId = _resId;
+		resPhotoId = UNDEFINED_ID;
+		initLetter = _initLetter;
+		finalLetter = _finalLetter;
+		kana = _kana;
+	}
+	
+	public ImageInfo(int _resId, int _resPhotoId, String _initLetter, String _finalLetter, String _kana) {
+		resId = _resId;
+		resPhotoId = _resPhotoId;
+		initLetter = _initLetter;
+		finalLetter = _finalLetter;
+		kana = _kana;
+	}
+	
 }

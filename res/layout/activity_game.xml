@@ -5,28 +5,30 @@
     android:layout_height="match_parent"
     android:layout_gravity="fill_vertical"
     android:orientation="vertical" >
-
+
     <jp.co.est_inc.android.shiritori.MainImageView
         android:id="@+id/imageView1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0.66"
+        android:layout_weight="0.48"
         android:src="@drawable/ic_action_search"
         android:visibility="visible" />
-
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0.10"
         android:gravity="bottom"
         android:orientation="horizontal" >
-
+
         <ImageButton
             android:id="@+id/imageButton1"
+            style="android:imageButtonStyle"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_weight="1"
             android:adjustViewBounds="true"
+            android:background="@layout/tag_corner"
             android:cropToPadding="false"
             android:maxHeight="64dp"
             android:maxWidth="@android:dimen/app_icon_size"
@@ -40,6 +42,7 @@
             android:layout_height="fill_parent"
             android:layout_weight="1"
             android:adjustViewBounds="false"
+            android:background="@layout/tag_corner"
             android:maxHeight="64dp"
             android:padding="2dp"
             android:scaleType="fitXY"
@@ -51,10 +54,53 @@
             android:layout_height="fill_parent"
             android:layout_weight="1"
             android:adjustViewBounds="false"
+            android:background="@layout/tag_corner"
             android:maxHeight="64dp"
             android:padding="2dp"
             android:scaleType="fitXY"
             android:src="@drawable/ic_action_search" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <EditText
+            android:id="@+id/editText1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:clickable="false"
+            android:editable="false"
+            android:ems="10"
+            android:focusable="false"
+            android:focusableInTouchMode="false" />
+
+        <EditText
+            android:id="@+id/editText2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:clickable="false"
+            android:editable="false"
+            android:ems="10"
+            android:focusable="false"
+            android:focusableInTouchMode="false" >
+
+            <requestFocus />
+        </EditText>
+
+        <EditText
+            android:id="@+id/editText3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:clickable="false"
+            android:editable="false"
+            android:ems="10"
+            android:focusable="false"
+            android:focusableInTouchMode="false" />
 
     </LinearLayout>
 
